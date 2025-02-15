@@ -1,16 +1,28 @@
+version: '3.8'
 services:
-  mysql:
-    image: mysql:9.1
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_USER=petclinic
-      - MYSQL_PASSWORD=petclinic
-      - MYSQL_DATABASE=petclinic
+  petclinic:
+    image: eclipse-temurin:17-jdk
     volumes:
-      - "./conf.d:/etc/mysql/conf.d:ro"
+      - ./target/${JAR_NAME}:/app/app.jar
+    ports:
+      - "8080:8080"
+     command: ["java", "-jar", "/app/app.jar"]
+     environment:
+       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/petclinic
+       - SPRING_DATASOURCE_USERNAME=petclinic
+       - SPRING_DATASOURCE_PASSWORD=petclinic
+ # mysql:
+  #  image: mysql:9.1
+   # ports:
+    #  - "3306:3306"
+   # environment:
+    #  - MYSQL_ROOT_PASSWORD=
+    #  - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    #  - MYSQL_USER=petclinic
+    #  - MYSQL_PASSWORD=petclinic
+    #  - MYSQL_DATABASE=petclinic
+   # volumes:
+   #   - "./conf.d:/etc/mysql/conf.d:ro"
   postgres:
     image: postgres:17.0
     ports:
