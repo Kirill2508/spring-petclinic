@@ -6,11 +6,11 @@ services:
       - ./target/${JAR_NAME}:/petclinic/petclinic.jar
     ports:
       - "8080:8080"
-     command: ["java", "-jar", "/petclinic/petclinic.jar"]
-     environment:
-       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/petclinic
-       - SPRING_DATASOURCE_USERNAME=petclinic
-       - SPRING_DATASOURCE_PASSWORD=petclinic
+    command: ["java", "-jar", "/petclinic/petclinic.jar"]
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/petclinic
+      - SPRING_DATASOURCE_USERNAME=petclinic
+      - SPRING_DATASOURCE_PASSWORD=petclinic
   mysql:
     image: mysql:9.1
     ports:
