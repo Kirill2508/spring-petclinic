@@ -27,8 +27,8 @@ services:
       - "./conf.d:/etc/mysql/conf.d:ro"
       - mysql_data:/var/lib/mysql
       - ./src/main/resources/db/mysql:/docker-entrypoint-initdb.d
-    volumes:
-      - mysql_data:
+volumes:
+  - mysql_data:
  # postgres:
   #  image: postgres:17.0
    # ports:
