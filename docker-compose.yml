@@ -2,6 +2,7 @@ version: '3.8'
 services:
   petclinic:
     image: eclipse-temurin:17-jdk
+    container_name: petclinic_app
     volumes:
       - ./target/${JAR_NAME}:/petclinic/petclinic.jar
     ports:
@@ -13,6 +14,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=petclinic
   mysql:
     image: mysql:9.1
+    container_name: petclinic_sql
     ports:
       - "3306:3306"
     environment:
@@ -22,9 +24,11 @@ services:
       - MYSQL_PASSWORD=petclinic
       - MYSQL_DATABASE=petclinic
     volumes:
-     # - "./conf.d:/etc/mysql/conf.d:ro"
-      - my_mysql_data:/var/lib/mysql
+      - "./conf.d:/etc/mysql/conf.d:ro"
+      - mysql_data:/var/lib/mysql
       - ./src/main/resources/db/mysql:/docker-entrypoint-initdb.d
+    volumes:
+      - mysql_data:
  # postgres:
   #  image: postgres:17.0
    # ports:
