@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     command: ["java", "-jar", "/petclinic/petclinic.jar"]
     environment:
+      - SPRING_PROFILES_ACTIVE=postgres
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/petclinic
       - SPRING_DATASOURCE_USERNAME=petclinic
       - SPRING_DATASOURCE_PASSWORD=petclinic
