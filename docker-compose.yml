@@ -22,7 +22,9 @@ services:
       - MYSQL_PASSWORD=petclinic
       - MYSQL_DATABASE=petclinic
     volumes:
-      - "./conf.d:/etc/mysql/conf.d:ro"
+     # - "./conf.d:/etc/mysql/conf.d:ro"
+      - my_mysql_data:/var/lib/mysql
+      - ./src/main/resources/db/mysql:/docker-entrypoint-initdb.d
  # postgres:
   #  image: postgres:17.0
    # ports:
